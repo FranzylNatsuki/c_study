@@ -1,0 +1,43 @@
+Problem: Validate a String of Brackets
+Description:
+Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+
+Open brackets must be closed in the correct order.
+
+Step-by-step algorithm (descriptive words, no code):
+Start reading the string from left to right.
+
+For each character you encounter:
+
+If it’s an opening bracket ((, {, [),
+push it onto the stack to keep track of what you expect to close later.
+
+If it’s a closing bracket (), }, ]),
+check the top of the stack:
+
+If the stack is empty, it means there is no matching opening bracket → invalid.
+
+If the top of the stack contains the matching opening bracket (for ), it should be (; for }, it should be {; for ], it should be [),
+pop that opening bracket from the stack and continue.
+
+If the top does not match, the brackets are misaligned → invalid.
+
+After you’ve read all characters:
+
+If the stack is empty, it means all opening brackets had matching closing brackets → valid.
+
+If the stack is not empty, it means some opening brackets were never closed → invalid.
+
+This is a great problem for practicing:
+
+How to push and pop carefully with conditions
+
+Keeping track of matched pairs
+
+Handling edge cases like empty stack
+
+
