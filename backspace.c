@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <ctype.h>
+
+
+// cool
 
 #define STRING_MAX 15
 
@@ -47,6 +49,15 @@ bool isEmpty(STACK stack) {
     return isEmpty;
 }
 
+void reverse_str(char *string) {
+	int len = strlen(string);
+	for (int i = 0; i < len / 2; i++) {
+		char temp = string[i];
+		string[i] = string[len - i -1];
+		string[len - i - 1] = temp;
+	}
+}
+
 int main(void) {
 	STACK stack;
 	stack.tos = -1;
@@ -56,18 +67,21 @@ int main(void) {
 
 	for (int i = 0; i < strlen(input); i++) {
 		char ch = input[i];
-		if (ch != '*' && isdigit(ch)) {
+		if (ch != '*') {
 			push(&stack, ch);
+			printf("Pushed %c\n", ch);
 		} 
 		else if (ch == '*') {
-			pop(&stack);
+			// pop(&stack);
+			printf("Pop %c\n", pop(&stack));
 		}
 	}
-
+	
+	int i = 0;
 	while (!isEmpty(stack)) {
-		int i;
 		output[i++] = pop(&stack);
 	}
 
-	printf("%s", output);
+	reverse_str(output);
+	printf("%s\n", output);
 }
