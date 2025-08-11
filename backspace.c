@@ -4,19 +4,19 @@
 #include <string.h>
 #include <ctype.h>
 
-#define STRING_MAX 10
+#define STRING_MAX 15
 
 typedef struct stack {
 	int tos;
 	char stack[STRING_MAX];
 } STACK;
 
-void push(STACK *stack, int data);
-int pop(STACK *stack);
+void push(STACK *stack, char data);
+char pop(STACK *stack);
 bool isFull(STACK stack);
 bool isEmpty(STACK stack);
 
-void push(STACK *stack, int data) {
+void push(STACK *stack, char data) {
 	if (isFull(*stack)) {
 		printf("Stack Overflow\n");
 		return;
@@ -25,7 +25,7 @@ void push(STACK *stack, int data) {
 	stack->stack[stack->tos] = data;
 }
 
-int pop(STACK *stack) {
+char pop(STACK *stack) {
 	int data = stack->stack[stack->tos];
 	stack->tos = stack->tos - 1;
 	return data;
@@ -52,11 +52,22 @@ int main(void) {
 	stack.tos = -1;
 
 	char input[STRING_MAX] = "ab*c";
+	char output[STRING_MAX] = "";
 
 	for (int i = 0; i < strlen(input); i++) {
-		char ch = input[i]
-		if (ch != '*' && isF) {
-			printf
+		char ch = input[i];
+		if (ch != '*' && isdigit(ch)) {
+			push(&stack, ch);
+		} 
+		else if (ch == '*') {
+			pop(&stack);
 		}
 	}
+
+	while (!isEmpty(stack)) {
+		int i;
+		output[i++] = pop(&stack);
+	}
+
+	printf("%s", output);
 }
