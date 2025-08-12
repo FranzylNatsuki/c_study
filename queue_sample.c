@@ -8,6 +8,12 @@ struct node {
 	nd next;
 } QUEUE;
 
+typedef struct queue *node;
+struct queue {
+	nd front;
+	nd rear;
+} FUNC;
+
 void enqueue(nd *front, nd *rear, int data) {
 	if ((*front) == NULL) { 
 		(*front) = malloc(sizeof(QUEUE));
