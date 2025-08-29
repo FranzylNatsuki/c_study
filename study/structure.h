@@ -3,15 +3,16 @@
 
 #define MAX 5
 
-/*
+
 typedef struct data {
-	int data;
+	int id;
 	char name[50];
 } DATA;
-*/
+
 
 typedef struct stack {
 	int data[MAX];
+	DATA dbmaster;
 	int tos;
 } STACK;
 
