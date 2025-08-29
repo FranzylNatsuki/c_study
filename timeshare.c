@@ -18,7 +18,6 @@ struct node {
     nd next;
 } NODE;
 
-
 void createQueue(nd *front, nd *rear);
 void enQueue(nd *front, nd *rear, PR data );
 PR deQueue(nd *front, nd *rear);

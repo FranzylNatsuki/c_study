@@ -1,4 +1,7 @@
-// MADE FOR FUNSIES
+// when asked for a string which only contains the characters [, (, {, evaluate 
+// the strings if they are valid. Valid meaning that each symbol is closed by their respective }, ), ], closing characters. ALSO order matters, [ should be immediatelly closed by a ].
+// Push an opening character to the stack, when it peek() == the current closing character, pop the stack
+// The string is valid if the stack is empty
 
 #include <stdio.h>
 #include <stdlib.h>

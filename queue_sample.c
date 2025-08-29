@@ -29,7 +29,7 @@ void enqueue(nd *front, nd *rear, int data) {
 }
 
 void dequeue(nd *front, nd *rear) {
-
+	
 }
 
 int main(void) {
