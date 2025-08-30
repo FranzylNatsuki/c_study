@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include <conio.h>
-#include <windows.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 #define S 6
 #define P 20
@@ -68,18 +68,21 @@ PR inputProcess(void);
 bool time_share(void);
 
 PR inputProcess(void) {
-    PR process;
-    printf("Process Name:\n");
-    fgets(process.prName, P, stdin);
-    fflush(stdin);
-    printf("Process Dur:\n");
-    scanf(" %d", &process.prDur);
-    return process;
+    	PR process;
+	for (int i = 0; i <= S; i++) {
+	    printf("Process Name:\n");
+	    fgets(process.prName, P, stdin);
+	    fflush(stdin);
+	    printf("Process Dur:\n");
+	    scanf(" %d", &process.prDur);
+	}
+	    return process;
 }
 
 bool time_share(void) {
     int timetoProc;
     nd front, rear;
+	bool done;
     createQueue(&front, &rear);
 
     PR process = inputProcess();
@@ -97,12 +100,12 @@ bool time_share(void) {
             timetoProc = TA;
             process.prDur -= TA;
         }
-        timetoProc *= 1000;
-        Sleep(timetoProc);
+        // timetoProc *= 1000;
+        sleep(timetoProc);
         if (complete == true) {
             printf("Process complete\n");
         } else {
-            printf("Process %s has %d seconds left\n");
+            printf("Process %s has %d seconds left\n", process.prName, process.prDur);
             enQueue(&front, &rear, process);
         }
         empty = isEmpty(&rear);
@@ -119,6 +122,6 @@ int main() {
     } else {
         printf("an error was encountered\n");
     }
-    getch();
+    getchar();
     return 0;
 }

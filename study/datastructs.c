@@ -46,6 +46,8 @@ bool isFull(STACK stack) {
 	} else {
 		return false;
 	}
+	// shorthand:
+	// return (stack.tos == MAX - 1)
 }
 
 // REMINDER: Always use MAX - 1 (in C atleast)
@@ -56,6 +58,8 @@ bool isEmpty(STACK stack) {
 	} else {
 		return false;
 	}
+	// shorthand:
+	// return (stack.tos == -1)
 }
 
 // REMINDER: Empty always is -1 (in C atleast)
