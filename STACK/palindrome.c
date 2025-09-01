@@ -21,6 +21,7 @@ void push(STACK *stack, char item) {
 	}
 	stack->tos++;
 	stack->data[stack->tos] = item;
+	// stack->data[++stack-tos] = item;
 }
 
 // NOTES: Remember to add tos first before inputting
@@ -34,6 +35,8 @@ char pop(STACK *stack) {
 	char val = stack->data[stack->tos];
 	stack->tos--;
 	return val;
+
+	//return stack->data[stack->tos--];
 }
 // always check booleans
 // NOTES: store data first, increment - 1, then return
@@ -73,7 +76,7 @@ int main() {
 	STACK s;
 	s.tos = -1;
 
-	char original[MAX] = "racecar";
+	char original[MAX] = "firagarif";
 	char reversed[MAX];
 
 	for (int i = 0; i < strlen(original); i++) {
