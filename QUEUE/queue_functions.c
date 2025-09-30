@@ -62,6 +62,9 @@ int main() {
 	printf("Dequeued: %d\n", dequeue(&queue)); // should print 20
 	printf("Dequeued: %d\n", dequeue(&queue)); // should print 30
 	printf("Dequeued: %d\n", dequeue(&queue)); // underflow -> -1
-
+	
+	for (int i = 0; i < MAX_SIZE; i++) {
+		enqueue(queue, i);
+	}
 	return 0;
 }
