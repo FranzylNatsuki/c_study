@@ -3,12 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define FULL_CAP 100
+
 #define Flush while(getchar() != '\n')
 
 typedef struct print_job {
     int pages;
-    char doc_title[100];
-    char mac_address[100];
+    char doc_title[FULL_CAP];
+    char mac_address[FULL_CAP];
 } PRINT;
 
 typedef struct heap {
@@ -41,6 +43,14 @@ char input(void) {
     scanf("%c", &choice);
     Flush;
     return choice;
+}
+
+bool isFull(HEAP H) {
+	return H.size == FULL_CAP;
+}
+
+bool isEmpty(HEAP H) {
+	return H.size == 0;
 }
 
 PRINT create_print(void) {
