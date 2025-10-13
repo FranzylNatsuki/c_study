@@ -19,6 +19,7 @@ bool search(nd root, int key, INFO *info);
 bool delete_nochild(nd *root, nd *ptr, nd *ptr1);
 bool delete_one(nd *root, nd *ptr, nd *ptr1);
 void delete_Two(nd *ptr, nd *ptr1);
+void view_Tree(nd ptr);
 
 void insert_node(nd *root, int data) {
 	nd ptr, ptr1, temp = malloc(sizeof(BST));
