@@ -116,7 +116,7 @@ void Display(HEAP H) {
 
     while (Display_Struct.size != 0) {
 	PRINT job = deleteMax(&Display_Struct);
-	printf("%-5d %-5d %-20s %-20s\n", i, job.pages , job.doc_title, job.mac_address);
+	printf("%-5d %-5d %-20s %-20s\n", i++, job.pages , job.doc_title, job.mac_address);
     }
 }
 
