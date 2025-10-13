@@ -1,0 +1,56 @@
+PSEUDO
+
+void insert(int data, HEAP *heap) {
+	int i = ++(heap->size);
+
+	// > for MIN heap , < for MAX heap	
+	while (heap->elements[i / 2] > data) {
+		heap->elements[i] = heap->elements[i/2]
+		i = i / 2;
+	}
+
+	heap->elements[i] = data;
+	return;
+}
+
+void heapify(int i, HEAP elements[], int size) {
+	// set current children
+
+	int l, r, smallest;
+
+	l = 2 * i;
+	r = 2 * i + 1;
+
+	// for max heap set all < to >, to make it MAX
+	if ((l <= size) && (elements[l] < elements[i])) {
+		smallest = l;
+	} else {
+		smallest = i;
+	}
+
+	if ((r <= size) && (elements[r] < elements[i])) {
+		smallest = r;	
+	} 
+
+	if (smallest != i) {
+		swap(&elements[smallest], &elements[i]);
+		heapify(smallest, elements, size);
+	}
+	// set conditions for who is smallest
+	// else, swap and recurse
+}
+
+int delete(HEAP *heap) {
+	int min = heap->elements[1];
+
+	heap->elements[1] = heap->elements[heap->size--];
+	heapify(1, heap->elements, heap->size);
+	// to change between max or min, just take note of which heapify function you are calling.
+	return min;
+}
+
+void buildheap(HEAP *heap) {
+	for (int i = heap->size / 2; i >= 1; i--) {
+		heapify(i, heap->elements, heap->size);
+	}
+}

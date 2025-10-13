@@ -1,0 +1,65 @@
+void insert(nd *root, int data) {
+nd ptr, ptr1;
+	nd temp = malloc()
+	// two traversal pointers, one temp node	
+
+	temp->data = data;
+	temp->left = NULL
+	temp->right = NULL
+
+	// set temp's pointers ALL to NULL
+
+	// base case
+	if (*root = NULL) {
+		*root = temp;
+	} else {
+		ptr = *root;
+	}
+
+	while (ptr != NULL) {
+		ptr1 = ptr; // delayed pointer to have access to parent
+		
+		// traversal code
+		if (data <= ptr->data)
+			ptr = ptr->left;
+		else 
+			ptr = ptr->right;
+	}
+
+	//insert decision 
+	if (data <= ptr1->data) 
+		ptr1->left = temp;
+	else 
+		ptr1->right = temp;
+}
+
+// bool search (nd root, searchterm, reciever *pointer)
+
+bool search (nd root, int key, int *data) {
+	bool found = false;
+	nd ptr = root;
+
+	while (ptr != NULL) {
+		if (key == ptr->data) {
+			found = true;
+			*data = ptr->data;
+			break;
+		}	
+		else if (key < ptr->data)
+			ptr = ptr->left;
+		else 
+			ptr = ptr->right;
+	}
+
+	return found;
+}
+
+void view tree(nd ptr) {
+	if (ptr->left != NULL) {
+		viewtree(ptr->left)
+	}
+	printf("%d ", ptr->data);
+	if (ptr->right != NULL
+		viewtree(ptr->right)
+}
+
