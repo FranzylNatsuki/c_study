@@ -14,6 +14,10 @@ struct node {
 	nd right;
 } BST;
 
+typedef struct {
+	nd set[20];
+} HEAP;
+
 void insert_node(nd *root, int data);
 bool search(nd root, int key, INFO *info);
 bool delete_nochild(nd *root, nd *ptr, nd *ptr1);

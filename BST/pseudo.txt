@@ -63,3 +63,30 @@ void view tree(nd ptr) {
 		viewtree(ptr->right)
 }
 
+Delete no Child clues:
+1. Base case is if ptr1 is null, make root null
+2. Main else has a sub elif based on wihch data is smaller, and make both sides null as intended
+
+Delete One child clues
+
+1. Base case is if root = ptr, then move root to whoever isn't NULL
+2. Main else, check elif for who is smaller,
+3. inside data elif, apply if (ptr)->right = NULL on both sides
+4. remember ptr1 -> ptr pairs: left->left, left->right right->left right->right
+
+Delete Two
+1. create ptr 2 = NULL
+2. set ptr1 to ptr->right
+3. traverse ptr1->left until its null
+3a. set ptr2 as a delayed pointer
+3b. traverse left via ptr1
+4. set ptr as ptr1's data
+main elif if ptr2 == NULL
+5. if ptr1->right != NULL, then
+ptr->right to ptr1->right
+else set it to null
+6. else, has same if statement, but this time
+ptr2->left and ptr1->right
+then
+ptr2->left NULL
+7. FREe
