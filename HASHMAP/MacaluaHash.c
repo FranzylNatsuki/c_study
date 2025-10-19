@@ -15,9 +15,9 @@ Date Finished: Oct 18, 2025
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <tgmath.h>
+#include <math.h>
 
-#define NUM 20
+#define NUM 3
 #define B_CAP 10
 #define K 31
 #define INCR 7
@@ -110,7 +110,7 @@ int key_cast(char num[]){
 }
 
 int hash_trunc(int key) {
-	int index = key % 100;
+	int index = key % 10;
 	return index;
 }
 
@@ -150,6 +150,7 @@ int edit_choice(void) {
 
 	while (!isValid) {
 		printf("Enter Choice:");
+		printf("1] Edit Item Name, 2] Item Price\n");
 		scanf("%d", &choice);
 		FLUSH;
 
@@ -210,7 +211,8 @@ void view_item(ITEMS hash_inv[], char search_key[]) {
 			index2 = index;
 		}
 		if (hash_inv[index2].state == 'o' && strcmp(search_key, hash_inv[index2].item_number) == 0) {
-			printf("%-5d %-15s %-15s %-8d %-10.2f %-6c\n", index2, hash_inv[index2].item_number, hash_inv[index2].item_name, hash_inv[index2].qty, hash_inv[index2].price, hash_inv[index2].state);
+			printf("\n%-15s %-15s %-8s %-10s\n","ITEM #", "ITEM NAME", "QTY", "PRICE");
+			printf("%-15s %-15s %-8d %-10.2f\n", hash_inv[index2].item_number, hash_inv[index2].item_name, hash_inv[index2].qty, hash_inv[index2].price);
 			found = true;
 			break;
 		} else {
