@@ -110,7 +110,7 @@ int key_cast(char num[]){
 }
 
 int hash_trunc(int key) {
-	int index = key % B_CAP;
+	int index = key % 100;
 	return index;
 }
 
