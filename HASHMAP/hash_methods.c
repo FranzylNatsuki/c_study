@@ -12,6 +12,11 @@
 #define INCR 7 
 // any prime number less than bucket (for double hash)
 
+typedef enum {
+	empty,
+	occupied,
+	deleted
+} STATE;
 
 typedef struct {
 	int key;
@@ -92,6 +97,17 @@ int radix(int key) {
 	}
 
 	return convert % B_CAP;
+}
+
+int midSquare(int key) { //limited only to 8 characters 
+    int index, le, r, tens, ones, sq;
+    sq = pow(key, 2);
+    le = sq % 1000;
+    r = (sq - le) % 10000;
+    tens = r % 10;
+    ones = le / 1000;
+    index = (tens * 10) + ones;
+    return index;
 }
 
 int linear_probing(int P) {
