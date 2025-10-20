@@ -7,7 +7,7 @@ record of all sold and bought items.
 
 Code by: Franzyl Bjorn L. Macalua
 Data Started: Oct 17, 2025
-Date Finished: Oct 18, 2025
+Date Finished: Oct 20, 2025
  */
 
 
@@ -16,6 +16,7 @@ Date Finished: Oct 18, 2025
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
+#include <conio.h>
 
 #define NUM 3
 #define B_CAP 10
@@ -25,7 +26,7 @@ Date Finished: Oct 18, 2025
 
 typedef struct {
 	char item_number[NUM];
-	char item_name[20];
+	char item_name[30];
 	int qty;
 	float price;
 	char state;
@@ -83,16 +84,39 @@ void init_hmaps(ITEMS hash_inv[], SALE hash_sale[], GOODS hash_goods[]) {
 
 ITEMS input(void) {
 	ITEMS data;
+
 	printf("Enter Item Number:");
 	gets(data.item_number);
 	printf("Enter Item Name:");
 	gets(data.item_name);
-	printf("Enter Quantity:");
-	scanf("%d", &data.qty);
-	FLUSH;
-	printf("Enter Price:");
-	scanf("%f", &data.price);
-	FLUSH;
+
+	bool isValid = false;
+	while (!isValid) {
+		printf("Enter Quantity:");
+		scanf("%d", &data.qty);
+		FLUSH;
+
+		if (data.qty < 0) {
+			printf("Quantity cannot be negative\n");
+		}
+		else {
+			isValid = true;
+		}
+	}
+
+	isValid = false;
+	while (!isValid) {
+		printf("Enter Price:");
+		scanf("%f", &data.price);
+		FLUSH;
+
+		if (data.price < 0) {
+			printf("Price cannot be negative\n");
+		}
+		else {
+			isValid = true;
+		}
+	}
 	data.state = 'o';
 
 	return data;
@@ -265,10 +289,11 @@ bool input_sale(SALE *data, ITEMS hash_inv[], int *index) {
 			if (record.s_qty > hash_inv[*index].qty) {
 				printf("Quantity on hand is insufficient\n");
 			}
-			if (record.s_qty < 0) {
+			else if (record.s_qty < 0) {
 				printf("Quantity cannot be negative\n");
 			}
-			if (record.s_qty >= 0) {
+			else if (record.s_qty >= 0) {
+				hash_inv[*index].qty -= record.s_qty;
 				isValid = true;
 			}
 			else {
@@ -302,7 +327,7 @@ void sales(SALE hash_sale[], ITEMS hash_inv[]) {
 			}
 			if((hash_sale[index2].state == 'e') ||(hash_sale[index2].state == 'd')){
 				hash_sale[index2] = record;
-				hash_inv[search_index].qty -= record.s_qty;
+				// hash_inv[search_index].qty -= record.s_qty;
 				stored = true;
 				break;
 			} else {
@@ -339,7 +364,8 @@ bool input_goods(GOODS *data, ITEMS hash_inv[], int *index) {
 			if (record.g_qty < 0) {
 				printf("Quantity cannot be negative\n");
 			}
-			if (record.g_qty >= 0) {
+			else if (record.g_qty >= 0) {
+				hash_inv[*index].qty += record.g_qty;
 				isValid = true;
 			}
 			else {
@@ -372,7 +398,7 @@ void goods(GOODS hash_goods[], ITEMS hash_inv[]) {
 			}
 			if((hash_goods[index2].state == 'e') ||(hash_goods[index2].state == 'd')){
 				hash_goods[index2] = record;
-				hash_inv[search_index].qty += record.g_qty;
+				// hash_inv[search_index].qty += record.g_qty;
 				stored = true;
 				break;
 			} else {
@@ -504,6 +530,6 @@ int main() {
 				exit(0);
 		}
 		printf("\nPress Any Button to continue\n");
-		getchar();
+		getch();
 	}
 }
