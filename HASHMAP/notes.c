@@ -59,6 +59,32 @@ bool search(HASH hash[], int key) {
 	return found;
 }
 
+bool deleted(HASH hash[], int key) {
+	bool deleted = false;
+	int index = modular_arithmetic(key);
+	nd ptr = hash[index].next, ptr1 = NULL;
+
+	while (ptr != NULL) {
+		if (ptr->data == key) {
+			if (ptr1 == NULL) {
+				hash[index].next = NULL;
+				break;
+			} else {
+				ptr1->next = ptr->next;
+				break;
+			}
+
+			free(ptr);
+			deleted = true;
+		} else {
+			ptr1 = ptr;
+			ptr = ptr->next;
+		}
+	}
+
+	return deleted;
+}
+
 int main() {
 
 }
